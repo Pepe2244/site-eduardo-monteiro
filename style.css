@@ -307,7 +307,7 @@ footer {
     background-color: #333;
     color: #aaa;
     text-align: center;
-    padding: 30px 0;
+    padding: 20px 0;
     font-size: 0.9rem;
 }
 
@@ -413,7 +413,6 @@ footer p {
     transform: scale(1.1);
 }
 
-
 @media (max-width: 768px) {
     .logo-text {
         text-align: center;
@@ -453,9 +452,8 @@ footer p {
         grid-template-columns: 1fr;
     }
 }
-/* --- ESTILOS PARA A SEÇÃO DE TRANSFORMAÇÕES --- */
 #transformacoes {
-    background-color: #f9f9f9; /* Ou a cor que preferir */
+    background-color: #f9f9f9;
 }
 
 #transformacoes .subtitle {
@@ -467,15 +465,36 @@ footer p {
 }
 
 .image-compare-container {
-    max-width: 900px; /* Ajuste o tamanho máximo conforme necessário */
+    position: relative;
+    max-width: 900px;
     margin: 0 auto;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: var(--sombra-suave);
 }
 
-/* --- Personalização da Biblioteca Image-Compare-Viewer --- */
 .image-compare-viewer {
-    --viewer-border-color: var(--cor-fundo-logo); /* Cor da linha e do controle */
+    --viewer-border-color: var(--cor-fundo-logo);
     --viewer-handle-background: var(--cor-fundo-logo);
+}
+
+.label-antes, .label-depois {
+    position: absolute;
+    top: 15px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.label-antes {
+    left: 15px;
+}
+
+.label-depois {
+    right: 15px;
 }
