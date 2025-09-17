@@ -65,5 +65,28 @@ document.addEventListener('DOMContentLoaded', () => {
             afterLabel: '',
         };
         new ImageCompare(compareElement, options).mount();
+
+        // --- NOVA LÓGICA PARA OPACIDADE DINÂMICA DOS RÓTULOS ---
+        const labelAntes = document.querySelector('.label-antes');
+        const labelDepois = document.querySelector('.label-depois');
+        const afterImage = compareElement.querySelector('.viewer-image-after');
+
+        function updateLabelOpacity() {
+            if (afterImage) {
+                const containerWidth = compareElement.offsetWidth;
+                const afterImageWidth = afterImage.offsetWidth;
+
+                // Calcula a posição do slider como uma fração de 0 a 1
+                const sliderPosition = afterImageWidth / containerWidth;
+
+                // Inverte a lógica para os rótulos
+                // Rótulo 'Depois' aparece conforme o slider vai para a ESQUERDA (mostrando mais da imagem 'depois')
+                // Rótulo 'Antes' aparece conforme o slider vai para a DIREITA (mostrando mais da imagem 'antes')
+                labelDepois.style.opacity = 1 - sliderPosition;
+                labelAntes.style.opacity = sliderPosition;
+            }
+            requestAnimationFrame(updateLabelOpacity);
+        }
+        requestAnimationFrame(updateLabelOpacity);
     }
 });
