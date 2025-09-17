@@ -453,3 +453,29 @@ footer p {
         grid-template-columns: 1fr;
     }
 }
+/* --- ESTILOS PARA A SEÇÃO DE TRANSFORMAÇÕES --- */
+#transformacoes {
+    background-color: #f9f9f9; /* Ou a cor que preferir */
+}
+
+#transformacoes .subtitle {
+    text-align: center;
+    margin-top: -30px;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.image-compare-container {
+    max-width: 900px; /* Ajuste o tamanho máximo conforme necessário */
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--sombra-suave);
+}
+
+/* --- Personalização da Biblioteca Image-Compare-Viewer --- */
+.image-compare-viewer {
+    --viewer-border-color: var(--cor-fundo-logo); /* Cor da linha e do controle */
+    --viewer-handle-background: var(--cor-fundo-logo);
+}

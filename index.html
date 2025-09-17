@@ -16,6 +16,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/image-compare-viewer/dist/image-compare-viewer.min.css">
 </head>
 <body>
 
@@ -24,6 +26,7 @@
             <div class="container">
                 <a href="#sobre">Sobre</a>
                 <a href="#projetos">Projetos</a>
+                <a href="#transformacoes">Transformações</a>
                 <a href="#servicos">Serviços</a>
                 <a href="#contato">Contato</a>
             </div>
@@ -70,6 +73,18 @@
             </div>
         </section>
 
+        <section id="transformacoes">
+            <div class="container">
+                <h2>Transformações</h2>
+                <p class="subtitle">Arraste a linha para ver a mágica acontecer.</p>
+                <div class="image-compare-container">
+                    <div id="image-compare">
+                        <img src="imagens/sala_antes.jpg" alt="Sala antes da reforma" />
+                        <img src="imagens/sala_depois.jpg" alt="Sala depois da reforma" />
+                    </div>
+                </div>
+            </div>
+        </section>
         <section id="servicos">
             <div class="container">
                 <h2>Nossos Serviços</h2>
@@ -141,6 +156,7 @@
     </a>
 
     <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://unpkg.com/image-compare-viewer/dist/image-compare-viewer.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
