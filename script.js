@@ -1,5 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- CÓDIGO DO MENU HAMBÚRGUER ---
+    const hamburgerButton = document.getElementById('hamburger-button');
+    const navLinks = document.getElementById('nav-links');
+    const navLinksAnchors = navLinks.querySelectorAll('a');
+
+    hamburgerButton.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburgerButton.classList.toggle('active');
+    });
+
+    // Fecha o menu ao clicar em um link (para navegação na mesma página)
+    navLinksAnchors.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                hamburgerButton.classList.remove('active');
+            }
+        });
+    });
+
     // --- EFEITO DO MENU AO ROLAR A PÁGINA ---
     window.addEventListener('scroll', function () {
         const nav = document.querySelector('nav');
@@ -73,22 +93,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (slider && labelAntes && labelDepois) {
 
             const updateLabelOpacity = () => {
-                // A posição do slider vai de 0 a 100.
                 const sliderPosition = slider.value / 100;
 
-                // O rótulo 'Antes' fica visível quando o slider vai para a direita
                 labelAntes.style.opacity = sliderPosition;
-                // O rótulo 'Depois' fica visível quando o slider vai para a esquerda
                 labelDepois.style.opacity = 1 - sliderPosition;
             };
 
-            // Adicionamos listeners para todos os eventos de mouse e toque
-            // que podem mover o slider.
             ['input', 'mousemove', 'touchmove'].forEach(evt => {
                 slider.addEventListener(evt, updateLabelOpacity, { passive: true });
             });
 
-            // Garante que a opacidade inicial esteja correta.
             updateLabelOpacity();
         }
     }
