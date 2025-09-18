@@ -56,49 +56,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- CÓDIGO CORRIGIDO PARA O SLIDER DE COMPARAÇÃO "ANTES E DEPOIS" ---
+    // --- CÓDIGO FINAL E CORRIGIDO PARA O SLIDER "ANTES E DEPOIS" ---
     const compareElement = document.getElementById('image-compare');
     if (compareElement) {
         const options = {
-            startingPoint: 50, // O valor é em porcentagem, então 50 para o meio
+            startingPoint: 50,
             beforeLabel: '',
             afterLabel: '',
         };
-        // Inicializa o comparador de imagens
-        const viewer = new ImageCompare(compareElement, options).mount();
+        new ImageCompare(compareElement, options).mount();
 
-        // Seleciona os elementos que vamos manipular
+        const slider = compareElement.querySelector('.viewer-slider');
         const labelAntes = document.querySelector('.label-antes');
         const labelDepois = document.querySelector('.label-depois');
-        const afterImageContainer = compareElement.querySelector('.viewer-image-container.after');
 
-        if (labelAntes && labelDepois && afterImageContainer) {
+        if (slider && labelAntes && labelDepois) {
 
-            // Função para atualizar a opacidade dos rótulos
             const updateLabelOpacity = () => {
-                // A biblioteca altera a largura do container da imagem "Depois" em porcentagem.
-                // Pegamos esse valor, que vai de "0%" a "100%".
-                const widthPercentage = parseFloat(afterImageContainer.style.width) || 50;
+                // A posição do slider vai de 0 a 100.
+                const sliderPosition = slider.value / 100;
 
-                // Convertemos a porcentagem para uma fração (de 0 a 1)
-                const sliderPosition = widthPercentage / 100;
-
-                // O rótulo 'Antes' fica mais visível conforme o slider vai para a direita (revelando a imagem 'depois')
+                // O rótulo 'Antes' fica visível quando o slider vai para a direita
                 labelAntes.style.opacity = sliderPosition;
-                // O rótulo 'Depois' fica mais visível conforme o slider vai para a esquerda (revelando a imagem 'antes')
+                // O rótulo 'Depois' fica visível quando o slider vai para a esquerda
                 labelDepois.style.opacity = 1 - sliderPosition;
             };
 
-            // Criamos um "observador" que fica de olho em mudanças no elemento
-            const observer = new MutationObserver(() => {
-                // Toda vez que o estilo do container da imagem "Depois" mudar, chamamos nossa função
-                updateLabelOpacity();
+            // Adicionamos listeners para todos os eventos de mouse e toque
+            // que podem mover o slider.
+            ['input', 'mousemove', 'touchmove'].forEach(evt => {
+                slider.addEventListener(evt, updateLabelOpacity, { passive: true });
             });
 
-            // Configuramos o observador para monitorar o atributo 'style' do container
-            observer.observe(afterImageContainer, { attributes: true });
-
-            // Chamamos a função uma vez no início para garantir que a opacidade inicial esteja correta
+            // Garante que a opacidade inicial esteja correta.
             updateLabelOpacity();
         }
     }
