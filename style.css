@@ -49,6 +49,14 @@ nav .container {
     align-items: center;
 }
 
+.nav-logo {
+    display: none;
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
 .nav-links {
     display: flex;
     gap: 40px;
@@ -458,8 +466,12 @@ footer p {
         font-size: 2rem;
     }
 
+    .nav-logo {
+        display: block;
+    }
+
     nav .container {
-        justify-content: flex-end;
+        justify-content: space-between;
     }
 
     .hamburger {
@@ -467,6 +479,7 @@ footer p {
     }
 
     .nav-links {
+        display: none;
         position: fixed;
         top: 0;
         left: -100%;
@@ -479,12 +492,13 @@ footer p {
         transition: left 0.3s ease-in-out;
         gap: 30px;
     }
-
+    
     .nav-links.active {
+        display: flex;
         left: 0;
     }
     
-    nav a {
+    nav .nav-links a {
         font-size: 22px;
     }
     
@@ -501,6 +515,7 @@ footer p {
         grid-template-columns: 1fr;
     }
 }
+
 #transformacoes {
     background-color: #f9f9f9;
 }
